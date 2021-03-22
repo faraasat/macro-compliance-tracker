@@ -17,13 +17,11 @@ const Nav = () => (
           <a>Home</a>
         </Link>
       </li>
-      {links.map(({ key, href, label }) => {
-        return (
-          <li key={key}>
-            <a href={href}>{label}</a>
-          </li>
-        );
-      })}
+      {links.map(({ key, href, label }) => (
+        <li key={key}>
+          <a href={href}>{label}</a>
+        </li>
+      ))}
     </ul>
 
     <style jsx>{`
