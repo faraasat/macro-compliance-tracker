@@ -22,10 +22,7 @@ handler.get(async (req, res) => {
     let doc = {};
 
     if (date) {
-      doc = await req.db
-        .collection("daily")
-        .findOne({ date: new Date(date.split("T")[0]).format("yyyy-mm-dd") });
-      console.log(new Date(date).format("yyyy-mm-dd"));
+      doc = await req.db.collection("daily").findOne({ date: date });
     } else {
       doc = await req.db.collection("daily").findOne();
     }
@@ -39,18 +36,16 @@ handler.get(async (req, res) => {
 });
 
 handler.post(async (req, res) => {
-  let data = req.body;
-  data = JSON.parse(data);
-  data.date = new Date(data.date);
-  let doc = await req.db
-    .collection("daily")
-    .updateOne(
-      { date: new Date(data.date).split("T")[0] },
-      { $set: data },
-      { upsert: true }
-    );
-
-  res.json({ message: "ok" });
+  try {
+    let data = req.body;
+    data = JSON.parse(data);
+    let doc = await req.db
+      .collection("daily")
+      .updateOne({ date: data.date }, { $set: data }, { upsert: true });
+    res.json({ statusCode: 200, data: doc });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // export default (req, res) => handler.apply(req, res);

@@ -23,29 +23,25 @@ const Home = ({ data }) => {
 
   const getDataForPreviousDay = async () => {
     let currentDate = dayjs(results.date);
-    let newDate = currentDate.subtract(1, "day").format("YYYY-MM-DDTHH:mm:ss");
+    let newDate = currentDate.subtract(1, "day").format("YYYY-MM-DD");
     const res = await fetch("http://localhost:3000/api/daily?date=" + newDate);
     const json = await res.json();
-
     setResults(json);
   };
 
   const getDataForNextDay = async () => {
     let currentDate = dayjs(results.date);
-    let newDate = currentDate.add(1, "day").format("YYYY-MM-DDTHH:mm:ss");
+    let newDate = currentDate.add(1, "day").format("YYYY-MM-DD");
     const res = await fetch("http://localhost:3000/api/daily?date=" + newDate);
     const json = await res.json();
-
     setResults(json);
   };
 
   const updateMacros = async () => {
     const res = await fetch("http://localhost:3000/api/daily", {
-      method: "post",
+      method: "POST",
       body: JSON.stringify(results),
     });
-
-    console.log(res);
   };
 
   return (
