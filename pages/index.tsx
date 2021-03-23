@@ -24,7 +24,7 @@ const Home = ({ data }) => {
   const getDataForPreviousDay = async () => {
     let currentDate = dayjs(results.date);
     let newDate = currentDate.subtract(1, "day").format("YYYY-MM-DD");
-    const res = await fetch("http://localhost:3000/api/daily?date=" + newDate);
+    const res = await fetch("https://next-compliance-tracker.vercel.app/api/daily?date=" + newDate);
     const json = await res.json();
     setResults(json);
   };
@@ -32,13 +32,13 @@ const Home = ({ data }) => {
   const getDataForNextDay = async () => {
     let currentDate = dayjs(results.date);
     let newDate = currentDate.add(1, "day").format("YYYY-MM-DD");
-    const res = await fetch("http://localhost:3000/api/daily?date=" + newDate);
+    const res = await fetch("https://next-compliance-tracker.vercel.app/api/daily?date=" + newDate);
     const json = await res.json();
     setResults(json);
   };
 
   const updateMacros = async () => {
-    const res = await fetch("http://localhost:3000/api/daily", {
+    const res = await fetch("https://next-compliance-tracker.vercel.app/api/daily", {
       method: "POST",
       body: JSON.stringify(results),
     });
@@ -103,7 +103,7 @@ const Home = ({ data }) => {
 };
 
 Home.getInitialProps = async () => {
-  const res = await fetch("http://localhost:3000/api/daily");
+  const res = await fetch("https://next-compliance-tracker.vercel.app/api/daily");
   console.log(JSON.stringify(res));
   const json = await res.json();
   return { data: json };
