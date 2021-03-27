@@ -6,7 +6,7 @@
 #### Taskbox Site: https://next-compliance-tracker.vercel.app/
 
 ### 🕵️‍♂️ Project Details:
-####  This project is based on primarily on NextJS, TypeScript as well as uses other libraries too. In this app, you can Trck your macro consumption!
+####  This project is based on primarily on NextJS, TypeScript as well as uses other libraries too. In this app, you can Trck your macro consumption and compliance with it!
 
 ### ⚙ Technical Details:
 #### In this project NextJS, MongoDB and TypeScript is used for the project.
